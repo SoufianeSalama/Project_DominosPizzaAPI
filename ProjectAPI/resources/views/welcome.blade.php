@@ -8,8 +8,8 @@
     <title>Project Domino's Pizza API</title>
 
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/custom.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/custom.css" rel="stylesheet">
 
 
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -31,7 +31,7 @@
                         <fieldset>
                             <div class="row"  style="margin-bottom:50px">
                                 <div class="center-block" style="text-align: center;">
-                                    <img src="img/logo.png" alt="logo">
+                                    <img src="../img/logo.png" alt="logo">
                                 </div>
                             </div>
 
@@ -63,6 +63,6 @@
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
 </body>
 </html>

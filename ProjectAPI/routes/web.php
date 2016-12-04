@@ -20,3 +20,13 @@ Route::get('/dashboard', function () {
     return view('templates.leveringen');
 });
 
+Route::get('/dashboard/{paginaNaam}', 'Main_Controller@getPagina');
+
+Route::post('/dashboard/postNieuweLevering', [
+    'uses' => 'Main_Controller@nieuweLevering',
+    'as' => 'postNieuweLevering'
+]);
+
+
+// API
+Route::get('/api/{orderID}', 'Main_Controller@getOrder');

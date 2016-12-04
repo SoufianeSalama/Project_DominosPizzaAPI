@@ -8,12 +8,20 @@
     <title>Project Domino's Pizza API</title>
 
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/custom.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/custom.css" rel="stylesheet">
 
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/qrcode.js"></script>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
+    <style>
+        #map {
+            height: 600px;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
 
@@ -23,7 +31,7 @@
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <a class="navbar-brand" href="#">
-                    <img alt="Logo" src="img/logo.png" width="25px" height="25px">
+                    <img alt="Logo" src="../img/logo.png" width="25px" height="25px">
                 </a>
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                     <span class="sr-only">Toggle navigation</span>
@@ -43,12 +51,12 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Nieuw... <span class="caret"></span></a>
                         <ul class="dropdown-menu">
 
-                            <li><a href="/personeel/nieuweReservatieRest">Nieuwe levering</a></li>
+                            <li><a href="/dashboard/newLevering">Nieuwe levering</a></li>
 
                         </ul>
                     </li>
 
-                    <li><a href="/personeel/nieuweReservatieRest">Leveringen</a></li>
+                    <li><a href="/dashboard/leveringen">Leveringen</a></li>
 
                 </ul>
             </div><!-- /.navbar-collapse -->
@@ -57,11 +65,16 @@
 </header>
 
 
-<div class="container" style="margin-top:80px">
+<div class="container" style="margin-top:50px">
     @yield("content")
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+@yield("scripts")
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/custom.js"></script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGqkl3FVvZaiFgviwehNCA5if5bX1IwIA&callback=initMap">
+</script>
+
 </body>
 </html>

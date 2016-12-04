@@ -3,51 +3,85 @@
 
 @section('content')
 
-    <div class="row">
 
-        <div class="col-md-3"></div>
+    @if(!empty($aLeveringen))
+        @foreach($aLeveringen as $levering)
 
-        <div class="col-md-6">
-            <h2 style="text-align: center">Personeelsleden</h2>
-            <br><br>
-            <table class="table table-striped custab">
-                <thead>
-                <tr>
-                    <th>ID</th><!--class="text-center"-->
-                    <th>Naam</th>
-                    <th>Gebruikersnaam</th>
-                    <th>Acces Level</th>
-                    <th >Action</th>
-                </tr>
-                </thead>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Order nr <?php echo $levering->ordernr ;?></h3>
+                </div>
+                <div class="panel-body">
 
-                @if(!empty($aPersoneel))
-                    @foreach($aPersoneel as $persoon)
-                        <?php //var_dump($persoon);?>
-                        <tr>
-                            <td><?php echo $persoon->id ;?></td>
-                            <td><?php echo $persoon->naam;?></td>
-                            <td><?php echo $persoon->gebruikersnaam; ?></td>
-                            <td>1 (Personeelslid) </td>
-                            <td ><a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Verwijderen</a></td>
-                        </tr>
+                    <div class="row">
 
-                    @endforeach
-                @else
-                    <div class="alert alert-danger alert-dismissable">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                        <strong>Fout! </strong> Geen personeelsleden in het systeem.
+                        <div class="col-sm-6">
+                            <table>
+                                <tr>
+                                    <td><label>Naam:</label></td>
+                                    <td><?php echo $levering->naam ;?></td>
+                                </tr>
+                                <tr>
+                                    <td><label>Adres:</label></td>
+                                    <td><?php echo $levering->adres ;?></td>
+                                </tr>
+                                <tr>
+                                    <td><label>Telefoon:</label></td>
+                                    <td><?php echo $levering->telefoon ;?></td>
+                                </tr>
+                                <tr>
+                                    <td><label>Nota:</label></td>
+                                    <td><?php echo $levering->nota ;?></td>
+                                </tr>
+                                <tr>
+                                    <td><label>Betaling:</label></td>
+                                    <td><?php echo $levering->betaling ;?></td>
+                                </tr>
+                                <tr>
+                                    <td><label>Bedrag:</label></td>
+                                    <td><?php echo $levering->bedrag ;?></td>
+                                </tr>
+                            </table>
+                        </div>
+
+
+                        <div class="col-sm-6">
+                            <div id="qrcode<?php echo $levering->id ;?>" style="width:100px; height:100px; margin-top:15px;" onmouseover="createQrCode(<?php echo $levering->id ;?>);"></div>
+                        </div>
+
+
+
                     </div>
 
-                @endif
-
-
-
-            </table>
-
-
+                </div>
+            </div>
+        @endforeach
+    @else
+        <div class="alert alert-danger alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <strong>Fout! </strong> Geen leveringen in het systeem.
         </div>
-        <div class="col-md-3"></div>
 
-    </div>
+
+
+    @endif
+    <script type="text/javascript">
+        function createQrCode(id){
+            alert(id);
+            var qrcode = new QRCode(document.getElementById("qrcode" + id), {
+                width : 150,
+                height : 150
+            });
+
+            url = "<?php $host= gethostname(); echo gethostbyname($host);?>"   + ":8000/api/" + id;
+
+            qrcode.makeCode(url);
+        }
+
+
+
+
+    </script>
+
+
 @endsection
