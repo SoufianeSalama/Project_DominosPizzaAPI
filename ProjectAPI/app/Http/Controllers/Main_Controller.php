@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 
 use App\Http\Models\Levering_Model;
+use Illuminate\Support\Facades\Auth;
 
 class Main_Controller extends Controller
 {
@@ -24,13 +25,10 @@ class Main_Controller extends Controller
                 return view('templates.newLevering');
                 break;
 
-            case "personeel" :
-                return view('templates.personeel');
-                break;
-
             default :
-
-                return view('welcome');
+                $oLevering = new Levering_Model();
+                $aLeveringen = $oLevering->getAlleLeveringen();
+                return view('templates.leveringen', compact("aLeveringen"));
                 break;
 
 
@@ -44,14 +42,13 @@ class Main_Controller extends Controller
         return view('templates.newLevering', compact("bResultaat"));
     }
 
-
     public function getOrder($orderID){
         $oLevering = new Levering_Model();
         $bResultaat = $oLevering->getLevering($orderID);
 
         echo $bResultaat;
-        /*$host= gethostname();
-        $ip = gethostbyname($host);;
-        var_dump($ip);*/
+
     }
+
+
 }

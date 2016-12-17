@@ -8,15 +8,29 @@ $(document).ready(function(){
 
 
     var selectedItems = [];
+    var totaal = 0;
+    var alleItems = [];
 
     // Items toevoegen
     $("#items").click(function(){
 
         $("#items :selected").each(function(){
-            selectedItems.push($(this).val());
-             $("#selectedItems").append("<option>" + $(this).val()+ "</option>");
+            var nieuweItem = [];
+            nieuweItem ["naam"] = $(this).text();
+            nieuweItem ["prijs"] = $(this).val();
+
+            alleItems.push(nieuweItem);
+            console.log(alleItems);
+
+
+            selectedItems.push($(this).text());
+            $("#selectedItems").append("<option>" + $(this).text()+ "</option>");
             $("#frmLeveringSelectedItems").val(JSON.stringify(selectedItems));
-            alert($("#frmLeveringSelectedItems").val());
+            //alert($("#frmLeveringSelectedItems").val());
+
+            totaal += parseFloat($(this).val());
+            $("#buh").val(String(totaal));
+            //alert(totaal + "rr" +$("#buh").val());
         });
         //alert(selectedItems);
         return false;
@@ -26,22 +40,34 @@ $(document).ready(function(){
     // Items verwijderen
     $("#selectedItems").click(function(){
 
-        $("#selectedItems :selected").each(function(){
-            selectedItems.pop($(this).val());
+        $("#selectedItems option:selected").each(function(){
+            var geselecteerd = $(this).text();
+            console.log($(this).val());
+            $.each(alleItems, function(key, value) {
+                if (value !=null) {
+                    if (value["naam"] == geselecteerd) {
+                       // alert("index " + key + value["naam"]);
+                        alleItems.splice(key, 1);
+                        totaal -= value["prijs"];
+                        $("#buh").val(String(totaal));
+                    } else {
 
-
+                    }
+                }
+            });
         });
+
         $('#selectedItems').empty();
 
-        $.each(selectedItems, function(key, value) {
-            $('#selectedItems').append($("<option/>", {
-                value: key,
-                text: value
-            }));
+        $.each(alleItems, function(key, value) {
+            $('#selectedItems')
+                    .append($("<option></option>")
+                    .attr("value",parseInt(value["prijs"]))
+                    .text(value["naam"])
+                );
         });
+
         $("#frmLeveringSelectedItems").val(JSON.stringify(selectedItems));
-        alert($("#frmLeveringSelectedItems").val());s
-        //alert(selectedItems);
 
     });
 
@@ -60,8 +86,6 @@ $(document).ready(function(){
 
 
     });
-
-
 
     function toonMap(adres){
         $("#Route").show();
@@ -92,36 +116,35 @@ $(document).ready(function(){
                     icon: destinationIconUrl
                 });
 
+                var directionsService = new google.maps.DirectionsService();
+                var directionsRequest = {
+                    origin: winkelAdres,
+                    destination: destinationAdres,
+                    travelMode: google.maps.DirectionsTravelMode.DRIVING,
+                    unitSystem: google.maps.UnitSystem.METRIC
+                };
+                directionsService.route(
+                    directionsRequest,
+                    function(response, status)
+                    {
+                        if (status == google.maps.DirectionsStatus.OK)
+                        {
+                            new google.maps.DirectionsRenderer({
+                                map: map,
+                                directions: response,
+                                suppressMarkers:true
+                            });
+                        }
+                        else
+                            $("#error").append("Unable to retrieve your route<br />");
+                    }
+                );
             } else {
-                alert('Fout! Kan het adres niet vinden. ' + status);
+                alert('Fout! Kan het adres niet vinden. '); // + status
             }
         });
 
-          /*var directionsService = new google.maps.DirectionsService();
-                alert(winkelAdres +"  "+ destinationAdres);
-                var directionsRequest = {
-                  origin: winkelAdres,
-                  destination: destinationAdres,
-                  travelMode: google.maps.DirectionsTravelMode.DRIVING,
-                  unitSystem: google.maps.UnitSystem.METRIC
-                };
-                directionsService.route(
-                  directionsRequest,
-                  function(response, status)
-                  {
-                    alert(status);
-                      if (status == google.maps.DirectionsStatus.OK)
-                    {
-                      new google.maps.DirectionsRenderer({
-                        map: map,
-                        directions: response,
-                        suppressMarkers:true
-                      });
-                    }
-                    else
-                      $("#error").append("Unable to retrieve your route<br />");
-                  }
-                );*/
+
     }
 
 

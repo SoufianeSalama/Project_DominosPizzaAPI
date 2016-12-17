@@ -27,6 +27,5 @@ Route::post('/dashboard/postNieuweLevering', [
     'as' => 'postNieuweLevering'
 ]);
 
-
 // API
 Route::get('/api/{orderID}', 'Main_Controller@getOrder');

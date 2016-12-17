@@ -3,7 +3,33 @@
 
 @section('content')
 
+    <script type="text/javascript">
 
+        $( document).ready(function(){
+            var children = $("#main").children();
+            for(var a = 0; a < children.length ; a ++){
+               var id = children[a].children[1].children[0].children[1].children[0].id;
+                createQrCode(id.substr(6));
+            }
+
+            function createQrCode(id){
+
+                var qrcode = new QRCode(document.getElementById("qrcode" + id), {
+                    width : 150,
+                    height : 150
+                });
+
+                url = "<?php $host= gethostname(); echo gethostbyname($host);?>"   + "/api/" + id;
+
+                qrcode.makeCode(url);
+            }
+        });
+
+
+
+
+    </script>
+    <div id="main">
     @if(!empty($aLeveringen))
         @foreach($aLeveringen as $levering)
 
@@ -41,12 +67,16 @@
                                     <td><label>Bedrag:</label></td>
                                     <td><?php echo $levering->bedrag ;?></td>
                                 </tr>
+                                <tr>
+                                    <td><label>Bestelling:</label></td>
+                                    <td><?php echo $levering->bestelling ;?></td>
+                                </tr>
                             </table>
                         </div>
 
 
                         <div class="col-sm-6">
-                            <div id="qrcode<?php echo $levering->id ;?>" style="width:100px; height:100px; margin-top:15px;" onmouseover="createQrCode(<?php echo $levering->id ;?>);"></div>
+                            <div id="qrcode<?php echo $levering->id ;?>" style="width:100px; height:100px; margin-top:15px;"></div>
                         </div>
 
 
@@ -56,6 +86,7 @@
                 </div>
             </div>
         @endforeach
+
     @else
         <div class="alert alert-danger alert-dismissable">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -65,23 +96,5 @@
 
 
     @endif
-    <script type="text/javascript">
-        function createQrCode(id){
-            alert(id);
-            var qrcode = new QRCode(document.getElementById("qrcode" + id), {
-                width : 150,
-                height : 150
-            });
-
-            url = "<?php $host= gethostname(); echo gethostbyname($host);?>"   + ":8000/api/" + id;
-
-            qrcode.makeCode(url);
-        }
-
-
-
-
-    </script>
-
-
+    </div>
 @endsection

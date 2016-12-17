@@ -44,7 +44,7 @@
             <div class="form-group">
                 <label class="col-sm-4 control-label">Bedrag</label>
                 <div class="col-sm-8">
-                    <input class="form-control" name="frmNewLeveringBedrag" value="10.50"  type="number" required/>
+                    <input class="form-control" name="frmNewLeveringBedrag"  value="0" id="buh"  type="number" disabled/>
                 </div>
             </div>
 
@@ -92,7 +92,7 @@
             <div class="form-group">
                 <label class="col-sm-4 control-label">Nota</label>
                 <div class="col-sm-8">
-                    <textarea class="form-control" name="frmNewLeveringNota" rows="2" cols="20" required>Speciale wensen ...</textarea>
+                    <textarea class="form-control" name="frmNewLeveringNota" rows="4" cols="20" placeholder="Speciale wensen ..."  style="resize: none;"></textarea>
                 </div>
             </div>
 
@@ -109,32 +109,32 @@
                 <div class="col-sm-8">
                     <select  class="form-control" id="items" size="8"> <!--multiple-->
                         <optgroup label="Pizza">
-                            <option>Hawai</option>
-                            <option>Cannibale</option>
-                            <option>Cheeseburger</option>
-                            <option>Margerita</option>
+                            <option value="13">Hawai</option>
+                            <option value="13">Cannibale</option>
+                            <option value="13">Cheeseburger</option>
+                            <option value="10">Margerita</option>
                         </optgroup>
 
                         <optgroup label="Side">
-                            <option>Chicken Box</option>
-                            <option>Chickenitos</option>
-                            <option>Kicken Chicken</option>
-                            <option>Popcorn Chicken</option>
+                            <option value="8">Chicken Box</option>
+                            <option value="5">Chickenitos</option>
+                            <option value="5">Kicken Chicken</option>
+                            <option value="5">Popcorn Chicken</option>
                         </optgroup>
 
                         <optgroup label="Pasta">
-                            <option>Paste Rossa</option>
-                            <option>Pasta Verde</option>
-                            <option>Paste Bianca</option>
+                            <option value="5.50">Paste Rossa</option>
+                            <option value="5.50">Pasta Verde</option>
+                            <option value="5.50">Paste Bianca</option>
                         </optgroup>
 
                         <optgroup label="Drank">
-                            <option>33cl Coca Cola</option>
-                            <option>33cl Fanta</option>
-                            <option>33cl Sprite</option>
-                            <option>1.5L Coca Cola</option>
-                            <option>1.5L Coca Cola Light</option>
-                            <option>1.5L Coca Cola Zero</option>
+                            <option value="1.50">33cl Coca Cola</option>
+                            <option value="1.50">33cl Fanta</option>
+                            <option value="1.50">33cl Sprite</option>
+                            <option value="3">1.5L Coca Cola</option>
+                            <option value="3">1.5L Coca Cola Light</option>
+                            <option value="3">1.5L Coca Cola Zero</option>
                         </optgroup>
 
 

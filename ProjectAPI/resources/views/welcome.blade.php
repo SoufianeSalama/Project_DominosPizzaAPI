@@ -27,7 +27,7 @@
                 </div>
                 <div class="panel-body">
 
-                    <form role="form" action="#" method="POST">
+
                         <fieldset>
                             <div class="row"  style="margin-bottom:50px">
                                 <div class="center-block" style="text-align: center;">
@@ -36,25 +36,29 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-sm-12 col-md-10  col-md-offset-1 ">
-                                    <div class="form-group">
-                                        <label for="key" class="sr-only">Gebruikersnaam</label>
-                                        <input type="text" name="key" id="key" class="form-control" placeholder="Gebruikersnaam">
-                                    </div>
 
-                                    <div class="form-group">
-                                        <label for="key" class="sr-only">Wachtwoord</label>
-                                        <input type="password" name="key" id="key" class="form-control" placeholder="Wachtwoord">
-                                    </div>
+                                    <div class="col-sm-12 col-md-10  col-md-offset-1 ">
+                                        {{--<div class="form-group">
+                                            <label for="key" class="sr-only">Gebruikersnaam</label>
+                                            <input type="text" name="frmInloggenGebruikersnaam" id="key" class="form-control" placeholder="Gebruikersnaam">
+                                        </div>
 
+                                        <div class="form-group">
+                                            <label for="key" class="sr-only">Wachtwoord</label>
+                                            <input type="password" name="frmInloggenWachtwoord" id="key" class="form-control" placeholder="Wachtwoord">
+                                        </div>--}}
+                                        <br><br>
 
-                                    <div class="form-group">
-                                        <input type="submit" class="btn btn-lg btn-primary btn-block" value="Aanmelden">
+                                        <div class="form-group">
+                                            <a href="/dashboard/test"><input  type="submit" class="btn btn-lg btn-primary btn-block" value="Welkom"></a>
+                                        </div>
                                     </div>
-                                </div>
+                                    <!-- Beveiliging als iemand uw session key heeft
+                                    <input type="hidden" name="_token" value="{{Session::token()}}"/>-->
+
                             </div>
                         </fieldset>
-                    </form>
+
                 </div>
 
             </div>
