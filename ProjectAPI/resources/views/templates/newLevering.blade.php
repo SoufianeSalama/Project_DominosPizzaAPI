@@ -44,7 +44,7 @@
             <div class="form-group">
                 <label class="col-sm-4 control-label">Bedrag</label>
                 <div class="col-sm-8">
-                    <input class="form-control" name="frmNewLeveringBedrag"  value="0" id="buh"  type="number" disabled/>
+                    <input class="form-control" name="frmNewLeveringBedrag" id="frmNewLeveringBedrag" value="0" type="number" readonly />
                 </div>
             </div>
 

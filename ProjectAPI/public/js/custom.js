@@ -21,16 +21,16 @@ $(document).ready(function(){
 
             alleItems.push(nieuweItem);
             console.log(alleItems);
-
-
+            console.log(selectedItems);
             selectedItems.push($(this).text());
             $("#selectedItems").append("<option>" + $(this).text()+ "</option>");
             $("#frmLeveringSelectedItems").val(JSON.stringify(selectedItems));
-            //alert($("#frmLeveringSelectedItems").val());
 
             totaal += parseFloat($(this).val());
-            $("#buh").val(String(totaal));
-            //alert(totaal + "rr" +$("#buh").val());
+
+            $("#frmNewLeveringBedrag").val(String(totaal));
+
+            console.log( $("#frmNewLeveringBedrag").val());
         });
         //alert(selectedItems);
         return false;
@@ -49,7 +49,7 @@ $(document).ready(function(){
                        // alert("index " + key + value["naam"]);
                         alleItems.splice(key, 1);
                         totaal -= value["prijs"];
-                        $("#buh").val(String(totaal));
+                        $("#frmNewLeveringBedrag").val(String(totaal));
                     } else {
 
                     }
@@ -58,17 +58,18 @@ $(document).ready(function(){
         });
 
         $('#selectedItems').empty();
-
+        selectedItems  = [];
         $.each(alleItems, function(key, value) {
             $('#selectedItems')
                     .append($("<option></option>")
                     .attr("value",parseInt(value["prijs"]))
                     .text(value["naam"])
                 );
+            selectedItems.push(value["naam"]);
         });
 
         $("#frmLeveringSelectedItems").val(JSON.stringify(selectedItems));
-
+        console.log($("#frmLeveringSelectedItems").val());
     });
 
 

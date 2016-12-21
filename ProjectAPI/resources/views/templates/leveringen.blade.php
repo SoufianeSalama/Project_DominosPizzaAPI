@@ -7,8 +7,9 @@
 
         $( document).ready(function(){
             var children = $("#main").children();
+            console.log(children);
             for(var a = 0; a < children.length ; a ++){
-               var id = children[a].children[1].children[0].children[1].children[0].id;
+               var id = children[a].children[1].children[0].children[2].children[0].id;
                 createQrCode(id.substr(6));
             }
 
@@ -41,7 +42,7 @@
 
                     <div class="row">
 
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
                             <table>
                                 <tr>
                                     <td><label>Naam:</label></td>
@@ -67,15 +68,31 @@
                                     <td><label>Bedrag:</label></td>
                                     <td><?php echo $levering->bedrag ;?></td>
                                 </tr>
-                                <tr>
-                                    <td><label>Bestelling:</label></td>
-                                    <td><?php echo $levering->bestelling ;?></td>
-                                </tr>
+
                             </table>
+
+
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label>Bestelling:</label>
+                            <ul>
+                                <?php
+                                $test = json_decode($levering->bestelling);
+                                /*foreach($test as $value) {
+                                    echo $value;
+                                }*/
+                                for($i = 0; $i < count($test); ++$i) {
+                                ?>
+                                <li><?php echo $test[$i]; ?></li>
+                                <?php
+                                }
+                                ?>
+                            </ul>
                         </div>
 
 
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
                             <div id="qrcode<?php echo $levering->id ;?>" style="width:100px; height:100px; margin-top:15px;"></div>
                         </div>
 

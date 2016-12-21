@@ -73,7 +73,7 @@
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/custom.js"></script>
 <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGqkl3FVvZaiFgviwehNCA5if5bX1IwIA&callback=initMap">
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGqkl3FVvZaiFgviwehNCA5if5bX1IwIA">
 </script>
 
 </body>

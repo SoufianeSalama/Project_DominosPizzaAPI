@@ -37,7 +37,7 @@ class Levering_Model extends Model implements  Authenticatable
             DB::insert('insert into leveringen (ordernr, bedrag, naam, adres, telefoon, nota, betaling, bestelling, timestamp) values (? ,?, ?, ?, ?, ?, ?, ?, ?)', array($iOrderNr, $sBedrag, $sNaam,  $sAdres, $sTelefoon, $sNota, $sBetaling, $aBestelling, $dTimestamp));
             $bResultaat = true;
         } catch (\PDOException $e) {
-            $bResultaat = false;
+            $bResultaat = $e;
         }
         return $bResultaat;
 
@@ -87,7 +87,7 @@ class Levering_Model extends Model implements  Authenticatable
         $errorReport = "";
         $aLeveringen = [];
         try {
-            $aLeveringen = DB::select('select * from leveringen', [1]);
+            $aLeveringen = DB::select('select * from leveringen ORDER BY timestamp DESC', [1]);
         } catch (\PDOException $e) {
             $aLeveringen = [];
 

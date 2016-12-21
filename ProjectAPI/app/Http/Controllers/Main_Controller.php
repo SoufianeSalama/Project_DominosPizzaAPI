@@ -28,6 +28,7 @@ class Main_Controller extends Controller
             default :
                 $oLevering = new Levering_Model();
                 $aLeveringen = $oLevering->getAlleLeveringen();
+
                 return view('templates.leveringen', compact("aLeveringen"));
                 break;
 
@@ -39,6 +40,7 @@ class Main_Controller extends Controller
     public function nieuweLevering(Request $request){
         $oLevering = new Levering_Model();
         $bResultaat = $oLevering->nieuweLevering($request);
+
         return view('templates.newLevering', compact("bResultaat"));
     }
 
